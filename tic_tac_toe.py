@@ -1,10 +1,9 @@
 from tkinter import *
-import status
 import tkinter.font as font
 
 root = Tk()
 root.title("TIC TAC TOE GAME")
-root.iconphoto(False, PhotoImage(file='icon.png'))
+root.iconbitmap("./icon.ico")
 
 sign = ['X', 'O']
 score = {'X': 0, 'O': 0}
@@ -25,6 +24,31 @@ again_button = Button(root, text="Play Again!", bd=4, state=DISABLED,
                       command=lambda: new_game()).grid(row=4, column=0)
 exit_button = Button(root, text="Exit", bd=4,
                      command=lambda: root.destroy()).grid(row=4, column=2)
+
+
+def check(table):
+    """
+    this function check the status of board in tic tac toe game
+    :param table: tic tac toe board
+    :return "X" - win "X", "O" - win "O", "draw" - draw, "go" - available to play
+    """
+    for j in range(3):
+        # check for win in rows
+        if table[3 * j] == table[3 * j + 1] == table[3 * j + 2] and table[3 * j] != "":
+            return table[3 * j]
+        # check for win in columns
+        if table[j] == table[j + 3] == table[j + 6] and table[j] != "":
+            return table[j]
+
+    # check for win in diagonals
+    if table[0] == table[4] == table[8] and table[4] != "":
+        return table[4]
+    if table[2] == table[4] == table[6] and table[4] != "":
+        return table[4]
+
+    if "" not in table:
+        return "draw"
+    return "go"
 
 
 def new_game():
@@ -63,7 +87,7 @@ def click(button_ptr):
     """
     it's called when clicking the button
     it puts the sign into the button and makes it DISABLED
-    at the end it calls status.check()
+    at the end it calls check()
     :param button_ptr: number of button
     """
     global sign, ptr, buttons, board, last_ptr, again_button
@@ -83,7 +107,7 @@ def click(button_ptr):
     board.insert(button_ptr, char)
 
     # check the position
-    position = status.check(board)
+    position = check(board)
     if position != "go":
         # end of the game making again_button active
         again_button = Button(root, text="Play Again!", bd=4,
