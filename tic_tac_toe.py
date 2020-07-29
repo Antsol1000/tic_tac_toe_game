@@ -6,26 +6,32 @@ root.title("TIC TAC TOE GAME")
 sign = ['X', 'O']
 ptr = 0
 
-sings = [""]*9
+board = [""] * 9
 
 
-def check(board):
+def check(table):
+
     for j in range(3):
-        if board[3 * j] == board[3 * j + 1] == board[3 * j + 2] and board[3 * j] != "":
-            return board[3 * j]
-        if board[j] == board[j + 3] == board[j + 6] and board[j] != "":
-            return board[j]
-    if board[0] == board[4] == board[8] and board[4] != "":
-        return board[4]
-    if board[2] == board[4] == board[6] and board[4] != "":
-        return board[4]
-    if "" not in board:
+        # check for win in rows
+        if table[3 * j] == table[3 * j + 1] == table[3 * j + 2] and table[3 * j] != "":
+            return table[3 * j]
+        # check for win in columns
+        if table[j] == table[j + 3] == table[j + 6] and table[j] != "":
+            return table[j]
+
+    # check for win in diagonals
+    if table[0] == table[4] == table[8] and table[4] != "":
+        return table[4]
+    if table[2] == table[4] == table[6] and table[4] != "":
+        return table[4]
+
+    if "" not in table:
         return "draw"
     return "go"
 
 
 def click(button_ptr):
-    global sign, ptr, buttons, sings
+    global sign, ptr, buttons, board
 
     char = sign[ptr % 2]
     ptr += 1
@@ -33,18 +39,26 @@ def click(button_ptr):
     buttons.pop(button_ptr)
     buttons.insert(button_ptr, Button(root, width=20, height=10, text=char, state=DISABLED))
 
-    sings.pop(button_ptr)
-    sings.insert(button_ptr, char)
+    board.pop(button_ptr)
+    board.insert(button_ptr, char)
 
     for j in range(9):
         buttons[j].grid(row=j // 3, column=j % 3)
 
-    position = check(sings)
+    position = check(board)
     if position != "go":
+
+        for j in range(9):
+            if board[j] == "":
+                buttons.pop(j)
+                buttons.insert(j, Button(root, width=20, height=10, state=DISABLED))
+        for j in range(9):
+            buttons[j].grid(row=j // 3, column=j % 3)
+
         if position == "draw":
             Label(root, text="There is a draw!", width=15, height=5).grid(row=3, column=1)
         else:
-            Label(root, text=position+" won this time!", width=15, height=5).grid(row=3, column=1)
+            Label(root, text=position + " won this time!", width=15, height=5).grid(row=3, column=1)
 
 
 buttons = [Button(root, width=20, height=10, command=lambda: click(0)),
