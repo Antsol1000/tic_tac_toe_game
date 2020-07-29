@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="903287b9-486d-4d85-80db-4bb4ccb2c8b9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/status.py" beforeDir="false" afterPath="$PROJECT_DIR$/status.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tic_tac_toe.py" beforeDir="false" afterPath="$PROJECT_DIR$/tic_tac_toe.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -84,7 +85,14 @@
       <option name="project" value="LOCAL" />
       <updated>1596020855108</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="upgrade with 'play again' option">
+      <created>1596022955373</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1596022955373</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -102,6 +110,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="added 'play again' button" />
-    <option name="LAST_COMMIT_MESSAGE" value="added 'play again' button" />
+    <MESSAGE value="upgrade with 'play again' option" />
+    <option name="LAST_COMMIT_MESSAGE" value="upgrade with 'play again' option" />
   </component>
 </project>

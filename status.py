@@ -1,4 +1,9 @@
 def check(table):
+    """
+    this function check the status of board in tic tac toe game
+    :param table: tic tac toe board
+    :return "X" - win "X", "O" - win "O", "draw" - draw, "go" - available to play
+    """
     for j in range(3):
         # check for win in rows
         if table[3 * j] == table[3 * j + 1] == table[3 * j + 2] and table[3 * j] != "":
