@@ -59,14 +59,10 @@ def click(button_ptr):
     ptr += 1
 
     # put the sign into proper field either buttons or board
-    buttons.pop(button_ptr)
-    buttons.insert(button_ptr, Button(root, width=16, height=8, text=char, state=DISABLED))
+    buttons[button_ptr]['text'] = char
+    buttons[button_ptr]['state'] = DISABLED
     board.pop(button_ptr)
     board.insert(button_ptr, char)
-
-    # display new buttons
-    for j in range(9):
-        buttons[j].grid(row=j // 3 + 1, column=j % 3)
 
     # check the position
     position = status.check(board)
@@ -76,10 +72,7 @@ def click(button_ptr):
         # make the buttons DISABLED
         for j in range(9):
             if board[j] == "":
-                buttons.pop(j)
-                buttons.insert(j, Button(root, width=16, height=8, state=DISABLED))
-        for j in range(9):
-            buttons[j].grid(row=j // 3 + 1, column=j % 3)
+                buttons[j]['state'] = DISABLED
 
         # edit the scoreboard
         if position == "draw":
