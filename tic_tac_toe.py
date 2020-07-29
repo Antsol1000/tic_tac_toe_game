@@ -20,13 +20,22 @@ buttons = []
 symbol_font = font.Font(size=20, weight='bold')
 com_font = font.Font(size=11)
 
+again_button = Button(root, text="Play Again!", bd=4, state=DISABLED,
+                      command=lambda: new_game()).grid(row=4, column=0)
+exit_button = Button(root, text="Exit", bd=4,
+                     command=lambda: root.destroy()).grid(row=4, column=2)
+
 
 def new_game():
     """
     this function reset all variables to start a new game
     it displays clear buttons ready to click
     """
-    global ptr, buttons, board, last_ptr
+    global ptr, buttons, board, last_ptr, again_button
+    # made again_button disabled to click
+    # only able to reset after game
+    again_button = Button(root, text="Play Again!", bd=4, state=DISABLED,
+                          command=lambda: new_game()).grid(row=4, column=0)
     ptr = last_ptr % 2
     board = [""] * 9
 
@@ -56,7 +65,7 @@ def click(button_ptr):
     at the end it calls status.check()
     :param button_ptr: number of button
     """
-    global sign, ptr, buttons, board, last_ptr
+    global sign, ptr, buttons, board, last_ptr, again_button
 
     # char represents the current sign
     char = sign[ptr % 2]
@@ -75,6 +84,9 @@ def click(button_ptr):
     # check the position
     position = status.check(board)
     if position != "go":
+        # end of the game making again_button active
+        again_button = Button(root, text="Play Again!", bd=4,
+                              command=lambda: new_game()).grid(row=4, column=0)
         last_ptr += 1
 
         # make the buttons DISABLED
@@ -94,7 +106,6 @@ def click(button_ptr):
         # display new scoreboard and "Play again!" button
         Label(root, text="X score: " + str(score['X']), width=11, height=2, font=com_font).grid(row=0, column=0)
         Label(root, text="O score: " + str(score['O']), width=11, height=2, font=com_font).grid(row=0, column=2)
-        Button(root, text="Play again!", bd=4, command=lambda: new_game()).grid(row=4, column=1)
 
 
 # start the game
