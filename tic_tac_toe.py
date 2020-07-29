@@ -1,5 +1,6 @@
 from tkinter import *
 import status
+import tkinter.font as font
 
 root = Tk()
 root.title("TIC TAC TOE GAME")
@@ -16,6 +17,8 @@ ptr = 0
 board = [""] * 9
 buttons = []
 
+my_font = font.Font(size=20)
+
 
 def new_game():
     """
@@ -27,20 +30,20 @@ def new_game():
     board = [""] * 9
 
     # display first row with scoreboard and initial statement
-    Label(root, text="Good Luck!", width=16, height=2).grid(row=0, column=1)
-    Label(root, text="X score: " + str(score['X']), width=16, height=2).grid(row=0, column=0)
-    Label(root, text="O score: " + str(score['O']), width=16, height=2).grid(row=0, column=2)
+    Label(root, text="Good Luck!", width=14, height=2).grid(row=0, column=1)
+    Label(root, text="X score: " + str(score['X']), width=14, height=2).grid(row=0, column=0)
+    Label(root, text="O score: " + str(score['O']), width=14, height=2).grid(row=0, column=2)
 
     # create and display buttons
-    buttons = [Button(root, width=16, height=8, command=lambda: click(0)),
-               Button(root, width=16, height=8, command=lambda: click(1)),
-               Button(root, width=16, height=8, command=lambda: click(2)),
-               Button(root, width=16, height=8, command=lambda: click(3)),
-               Button(root, width=16, height=8, command=lambda: click(4)),
-               Button(root, width=16, height=8, command=lambda: click(5)),
-               Button(root, width=16, height=8, command=lambda: click(6)),
-               Button(root, width=16, height=8, command=lambda: click(7)),
-               Button(root, width=16, height=8, command=lambda: click(8))]
+    buttons = [Button(root, width=6, height=3, font=my_font, command=lambda: click(0)),
+               Button(root, width=6, height=3, font=my_font, command=lambda: click(1)),
+               Button(root, width=6, height=3, font=my_font, command=lambda: click(2)),
+               Button(root, width=6, height=3, font=my_font, command=lambda: click(3)),
+               Button(root, width=6, height=3, font=my_font, command=lambda: click(4)),
+               Button(root, width=6, height=3, font=my_font, command=lambda: click(5)),
+               Button(root, width=6, height=3, font=my_font, command=lambda: click(6)),
+               Button(root, width=6, height=3, font=my_font, command=lambda: click(7)),
+               Button(root, width=6, height=3, font=my_font, command=lambda: click(8))]
     for j in range(9):
         buttons[j].grid(row=j // 3 + 1, column=j % 3)
 
@@ -78,14 +81,14 @@ def click(button_ptr):
         if position == "draw":
             score['X'] += 0.5
             score['O'] += 0.5
-            Label(root, text="There is a draw!", width=16, height=2).grid(row=0, column=1)
+            Label(root, text="There is a draw!", width=14, height=2).grid(row=0, column=1)
         else:
             score[position] += 1
-            Label(root, text=position + " won this time!", width=16, height=2).grid(row=0, column=1)
+            Label(root, text=position + " won this time!", width=14, height=2).grid(row=0, column=1)
 
         # display new scoreboard and "Play again!" button
-        Label(root, text="X score: " + str(score['X']), width=16, height=2).grid(row=0, column=0)
-        Label(root, text="O score: " + str(score['O']), width=16, height=2).grid(row=0, column=2)
+        Label(root, text="X score: " + str(score['X']), width=14, height=2).grid(row=0, column=0)
+        Label(root, text="O score: " + str(score['O']), width=14, height=2).grid(row=0, column=2)
         Button(root, text="Play again!", bd=4, command=lambda: new_game()).grid(row=4, column=1)
 
 
