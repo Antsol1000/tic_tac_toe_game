@@ -12,8 +12,8 @@ sings = [""]*9
 
 def check(board):
     for i in range(3):
-        if board[3*i] == board[3*i+1] == board[3*i+2] and board[i] != "":
-            return board[i]
+        if board[3*i] == board[3*i+1] == board[3*i+2] and board[3*i] != "":
+            return board[3*i]
         if board[i] == board[i+3] == board[i+6] and board[i] != "":
             return board[i]
     if board[0] == board[4] == board[8] and board[4] != "":
@@ -30,7 +30,7 @@ def click(button_ptr):
     char = sign[ptr % 2]
     ptr += 1
     buttons.pop(button_ptr)
-    buttons.insert(button_ptr, Button(root, padx=50, pady=50, text=char))
+    buttons.insert(button_ptr, Button(root, padx=50, pady=50, text=char, state=DISABLED))
     sings.pop(button_ptr)
     sings.insert(button_ptr, char)
     for i in range(9):
