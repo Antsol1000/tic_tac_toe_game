@@ -4,6 +4,7 @@ import tkinter.font as font
 
 root = Tk()
 root.title("TIC TAC TOE GAME")
+root.iconbitmap("C:\\Users\\antso\\Desktop\\programming\\tic_tac_toe\\icon.ico")
 
 sign = ['X', 'O']
 score = {'X': 0, 'O': 0}
