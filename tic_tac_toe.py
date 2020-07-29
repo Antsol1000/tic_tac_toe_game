@@ -36,9 +36,10 @@ def click(button_ptr):
             buttons[j].grid(row=j // 3, column=j % 3)
 
         if position == "draw":
-            Label(root, text="There is a draw!", width=15, height=5).grid(row=3, column=1)
+            Label(root, text="There is a draw!", width=15, height=2).grid(row=3, column=1)
         else:
-            Label(root, text=position + " won this time!", width=15, height=5).grid(row=3, column=1)
+            Label(root, text=position + " won this time!", width=15, height=2).grid(row=3, column=1)
+        Button(root, text="Play again!", bd=4).grid(row=4, column=1)
 
 
 buttons = [Button(root, width=16, height=8, command=lambda: click(0)),
