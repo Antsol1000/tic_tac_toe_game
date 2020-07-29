@@ -4,6 +4,7 @@ import tkinter.font as font
 
 root = Tk()
 root.title("TIC TAC TOE GAME")
+root.iconphoto(False, PhotoImage(file='icon.png'))
 
 sign = ['X', 'O']
 score = {'X': 0, 'O': 0}
